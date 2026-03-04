@@ -93,9 +93,23 @@ The model was trained for **30 epochs**, with loss logged every 25 batches. Both
 
 ---
 
+## Visualizations
+
+### Sample Predictions
+
+Single image with instance masks and bounding boxes overlaid:
+
+![Sample Prediction](assets/sample_prediction.png)
+
+Grid of 6 training samples with ground-truth annotations:
+
+![Sample Grid](assets/sample_grid.png)
+
+---
+
 ## Results
 
-Training and validation loss curves were tracked across all 30 epochs. The multi-task loss includes contributions from:
+The model was trained for **30 epochs** on 300 images. The multi-task loss includes contributions from:
 
 - **RPN classification loss** (objectness)
 - **RPN bounding box regression loss**
@@ -103,7 +117,30 @@ Training and validation loss curves were tracked across all 30 epochs. The multi
 - **RoI bounding box regression loss**
 - **Mask loss** (binary cross-entropy per pixel)
 
-Loss curves can be reproduced by running the final cells in `co2.ipynb`.
+### Training Loss (per epoch)
+
+Training loss dropped consistently from **~2.0 → ~0.45** over 30 epochs, showing strong convergence.
+
+![Train Loss](assets/train_loss_epochs.png)
+
+### Validation Loss (per epoch)
+
+![Valid Loss](assets/valid_loss_epochs.png)
+
+> The rising validation loss indicates overfitting on this small dataset (300 images), which is expected for a large model like Mask R-CNN. This can be addressed with data augmentation, regularization, or a larger dataset.
+
+### Batch-Level Loss Curves
+
+<table>
+  <tr>
+    <td><img src="assets/train_loss_all.png" alt="Train Loss All Iterations"/></td>
+    <td><img src="assets/valid_loss_all.png" alt="Valid Loss All Iterations"/></td>
+  </tr>
+  <tr>
+    <td align="center">Train Loss — All Batches (~4500 iterations)</td>
+    <td align="center">Valid Loss — All Batches</td>
+  </tr>
+</table>
 
 ---
 
@@ -116,6 +153,13 @@ RM_Segmentation_Assignment/
 ├── requirements.txt        # Python dependencies
 ├── train_losses.pth        # Saved training loss history (per batch, per epoch)
 ├── valid_losses.pth        # Saved validation loss history
+├── assets/                 # Result images for README
+│   ├── sample_prediction.png
+│   ├── sample_grid.png
+│   ├── train_loss_epochs.png
+│   ├── valid_loss_epochs.png
+│   ├── train_loss_all.png
+│   └── valid_loss_all.png
 │
 ├── train-300/              # Training set (300 images + COCO annotations)
 │   ├── data/
