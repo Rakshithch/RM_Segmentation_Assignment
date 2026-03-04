@@ -1,0 +1,14 @@
+# Large model and archive files
+coco_model.pth
+RM_Segmentation.zip
+co2.zip
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
